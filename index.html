@@ -2,6 +2,97 @@
 <html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>MOONBASE TEAM — SpaceUp 2026</title>
 <style>
 *{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#29456f,#0b1429 75%);font-family:system-ui,Arial,sans-serif;color:#f4f8ff}button,input{font:inherit}button{border:1px solid #6487aa;border-radius:12px;background:#2b4970;color:#fff;padding:10px 15px;min-height:42px;cursor:pointer;font-weight:700}button:disabled{opacity:.35;cursor:not-allowed}.primary{background:#edbc66;color:#1b2441;border:0;box-shadow:0 4px #a87d39}.selected{outline:3px solid #8be7ea}main{max-width:1020px;margin:auto;padding:16px}h1{font-size:clamp(35px,7vw,64px);line-height:1.06}h2{font-size:24px}h3{font-size:16px}.small{color:#b8ccec;font-size:12px}.panel{background:#1a2c4a;border:1px solid #48638b;border-radius:16px;padding:16px;margin:10px 0}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.grid{display:grid;grid-template-columns:1.35fr 1fr;gap:15px}.three{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.center{text-align:center}.pill{padding:5px 10px;border-radius:99px;background:#324c72;font-size:12px}.scene{position:relative;overflow:hidden;border-radius:16px;height:245px;background:radial-gradient(ellipse at 30% 0%,#375583,#111c35 75%);border:1px solid #48638b}.earth{position:absolute;top:16px;right:12%;height:55px;width:55px;border-radius:50%;background:linear-gradient(35deg,#144c9f,#8ce4dd,#2674ca);box-shadow:0 0 25px #54d5ff66}.ground{position:absolute;bottom:-35px;left:-10%;width:120%;height:108px;background:#8998b2;border-radius:50% 50% 0 0}.buildings{display:flex;align-items:end;justify-content:space-around;position:absolute;bottom:42px;left:3%;right:3%;gap:7px}.solar{height:53px;width:27%;transform:skewY(-12deg);border:4px solid #9cdeed;background:repeating-linear-gradient(90deg,#173b76 0 14px,#438ed2 14px 19px)}.dome{height:96px;width:27%;border:3px solid #a3e9f8;border-bottom:9px solid #456788;border-radius:65px 65px 3px 3px;background:#64a7ca77;display:grid;place-items:center;font-size:30px}.green{height:82px;border-color:#8de2ae;background:#35826c88}.tank{height:66px;width:13%;border:4px solid #b7dff4;border-radius:25px;background:#6e9ac0;display:grid;place-items:center}.meter{height:10px;border-radius:10px;background:#0b1731;overflow:hidden;margin:5px 0 13px}.meter div{height:100%;transition:width .5s}.alloc{padding:10px 0;border-bottom:1px solid #3c5273;display:flex;align-items:center;justify-content:space-between;gap:9px}.step{display:flex;align-items:center;gap:8px}.step button{font-size:20px;padding:6px 10px;min-width:37px}.step b{min-width:18px;text-align:center}.cells{display:flex;flex-wrap:wrap;gap:4px;margin:10px 0}.cell{width:18px;height:25px;background:#f0c06b;border-radius:4px;border:1px solid #e5d19c}.used{background:#304363;border-color:#5d7191}.note{padding:10px;background:#29405d;border-radius:9px;margin:7px 0;font-size:13px}.role{padding:11px;border:1px solid #6486ac;border-radius:10px;text-align:center}.big{font-size:45px}.flow{background:#152642;padding:12px;border-radius:9px;text-align:center;font-size:13px;color:#dce8fa;margin:10px 0}.footer{text-align:center;color:#a4badc;font-size:11px;margin:17px}input[type=range]{width:100%;accent-color:#eebc65}input[type=number]{max-width:80px;background:#192c4b;border:1px solid #6c85a6;color:white;padding:7px;border-radius:8px}@media(max-width:650px){.grid,.three{grid-template-columns:1fr}.scene{height:210px}main{padding:10px}}
+
+/* MOONBASE TEAM V2: motion, feedback and accessible animation */
+:root{color-scheme:dark}
+html{scroll-behavior:smooth}
+body{background-size:140% 140%;animation:nebulaDrift 24s ease-in-out infinite alternate}
+main{animation:screenArrival .4s cubic-bezier(.2,.7,.2,1)}
+.panel{box-shadow:0 7px 24px #050a1733;animation:cardArrival .45s both}
+.panel:nth-child(2){animation-delay:.07s}
+.panel:nth-child(3){animation-delay:.12s}
+button{position:relative;transition:transform .17s ease,background-color .2s,box-shadow .2s,filter .2s}
+button:not(:disabled):hover{transform:translateY(-2px);filter:brightness(1.13);box-shadow:0 6px 22px #08162a55}
+button:not(:disabled):active{transform:translateY(1px) scale(.97)}
+button:focus-visible,input:focus-visible{outline:3px solid #fff1aa;outline-offset:3px}
+.primary{animation:primaryPulse 3.5s ease-in-out infinite}
+.scene{isolation:isolate;box-shadow:inset 0 0 55px #0b142b77}
+.scene:before{content:"";position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(2px 2px at 12% 16%,#fff 90%,transparent),radial-gradient(2px 2px at 34% 32%,#fff 90%,transparent),radial-gradient(1px 1px at 62% 12%,#fff 90%,transparent),radial-gradient(2px 2px at 87% 37%,#fff 90%,transparent),radial-gradient(1px 1px at 73% 57%,#fff 90%,transparent),radial-gradient(1px 1px at 25% 53%,#fff 90%,transparent);animation:starsTwinkle 4s ease-in-out infinite alternate}
+.earth{animation:earthFloat 8s ease-in-out infinite,earthGlow 4s ease-in-out infinite}
+.ground{background:linear-gradient(#a6b1c2,#788aa5);box-shadow:inset 0 12px 18px #c2cad533}
+.solar{animation:solarSway 6s ease-in-out infinite;transform-origin:50% 100%;position:relative;box-shadow:0 0 16px #6db9ef66;overflow:hidden}
+.solar:before{content:"";position:absolute;inset:-120% -80%;background:linear-gradient(105deg,transparent 42%,#dbffff88 50%,transparent 58%);animation:solarShimmer 4.2s linear infinite}
+.dome{animation:domeBreath 4s ease-in-out infinite;box-shadow:0 0 24px #8be7ff33}
+.dome.green{animation-duration:5s;animation-delay:-1.8s}
+.tank{animation:tankPulse 2.6s ease-in-out infinite}
+.astronautSprite{position:absolute;bottom:37px;left:47%;font-size:28px;z-index:3;animation:astronautHop 3.5s ease-in-out infinite;filter:drop-shadow(0 6px 4px #07102666)}
+.sunOrb{position:absolute;left:7%;top:9%;width:40px;height:40px;background:radial-gradient(circle,#fff4c6 1%,#ffd577 48%,#ffac4277 72%,transparent 75%);border-radius:50%;box-shadow:0 0 35px 12px #ffc76c44;animation:sunPulse 5s ease-in-out infinite}
+.solarRay{position:absolute;left:15%;top:29%;width:3px;height:70px;transform:rotate(-29deg);transform-origin:top;background:linear-gradient(#ffe7aeb3,transparent);filter:blur(1px);animation:rayPulse 2s ease-in-out infinite}
+.energyParticle{position:absolute;bottom:74px;left:20%;width:9px;height:9px;border-radius:50%;background:#ffcf72;box-shadow:0 0 15px #ffe1a3;animation:energyTravel 2.5s linear infinite;z-index:4}
+.energyParticle:nth-of-type(2){animation-delay:1.25s}
+.eventFx{pointer-events:none;position:absolute;inset:0;z-index:5;overflow:hidden}
+.eventFx span{position:absolute;display:block}
+.fx-dust span{width:80%;height:5px;left:-85%;top:25%;background:linear-gradient(90deg,transparent,#e6d5af99,transparent);transform:rotate(-12deg);animation:dustRush 1.2s linear infinite}
+.fx-dust span:nth-child(2){top:47%;animation-delay:.45s}
+.fx-dust span:nth-child(3){top:67%;animation-delay:.8s}
+.fx-flare{background:radial-gradient(circle at 15% 10%,#ff9b3070,transparent 65%);animation:flareFlash 1.3s ease-in-out infinite}
+.fx-flare span{height:3px;width:100%;left:0;top:43%;background:#ffc36d;box-shadow:0 0 18px 5px #ff955b;transform:rotate(13deg);animation:flareSweep 1.1s ease-in-out infinite}
+.fx-leak span{width:9px;height:15px;border-radius:60% 60% 70% 70%;background:#69d3ff;left:77%;top:59%;animation:waterDrop 1s ease-in infinite}
+.fx-leak span:nth-child(2){animation-delay:.45s}
+.fx-fault span{top:53%;left:43%;font-size:24px;animation:faultBlink .7s step-end infinite}
+.fx-metal span{font-size:31px;top:4%;right:24%;animation:meteorFlight 2.7s ease-in infinite}
+.fx-calm span{font-size:26px;left:45%;top:18%;animation:peaceFloat 3s ease-in-out infinite}
+.fx-calm span:nth-child(2){left:66%;top:43%;animation-delay:1s}
+.scene.warning{animation:warningShake .35s linear 2}
+.scene.warning .dome{box-shadow:0 0 18px #ffae67aa}
+.scene.healthy .dome.green{box-shadow:0 0 28px #75ff9a88}
+.meter{position:relative;height:13px}
+.meter div{transform-origin:left;animation:fillFromZero 1.1s cubic-bezier(.2,.8,.2,1) both;position:relative}
+.meter div:after{content:"";position:absolute;right:0;top:0;bottom:0;width:13px;background:#fff7;filter:blur(5px)}
+.cells .cell{animation:cellPop .34s ease both;box-shadow:inset 0 -4px #bd8c43}
+.cells .cell:nth-child(3n){animation-delay:.06s}
+.cells .cell:nth-child(4n){animation-delay:.11s}
+.cells .used{box-shadow:none}
+.note{animation:noteSlide .4s ease both;border-left:3px solid #f0c36c}
+.note:nth-child(even){animation-delay:.08s}
+.role{transition:transform .2s,box-shadow .2s}
+.role.selected{animation:crewHighlight 2.4s ease-in-out infinite}
+h1{animation:titleFloat 4.5s ease-in-out infinite}
+.pill{animation:badgeReveal .5s ease both}
+.big{animation:astronautHop 3s ease-in-out infinite}
+.flow{background:linear-gradient(90deg,#152642,#1e3d60,#152642);background-size:220% 100%;animation:flowEnergy 5s linear infinite}
+@keyframes nebulaDrift{to{background-position:100% 90%}}
+@keyframes screenArrival{from{opacity:0;transform:translateY(11px)}to{opacity:1;transform:none}}
+@keyframes cardArrival{from{opacity:0;transform:translateY(13px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes primaryPulse{50%{box-shadow:0 4px #a87d39,0 0 24px #f4bf6244}}
+@keyframes starsTwinkle{50%{opacity:.35}}
+@keyframes earthFloat{50%{transform:translateY(8px) rotate(7deg)}}
+@keyframes earthGlow{50%{box-shadow:0 0 42px #54d5ffbb}}
+@keyframes solarSway{50%{transform:skewY(-10deg) rotate(2deg)}}
+@keyframes solarShimmer{to{transform:translateX(190%)}}
+@keyframes domeBreath{50%{filter:brightness(1.25)}}
+@keyframes tankPulse{50%{filter:brightness(1.25)}}
+@keyframes astronautHop{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-12px) rotate(3deg)}}
+@keyframes sunPulse{50%{transform:scale(1.14);filter:brightness(1.2)}}
+@keyframes rayPulse{50%{opacity:.25}}
+@keyframes energyTravel{0%{opacity:0;transform:translate(0,0) scale(.5)}20%{opacity:1}85%{opacity:1}100%{opacity:0;transform:translate(130px,-6px) scale(1.2)}}
+@keyframes dustRush{to{left:110%}}
+@keyframes flareFlash{50%{opacity:.2}}
+@keyframes flareSweep{50%{transform:rotate(-14deg);opacity:.25}}
+@keyframes waterDrop{0%{opacity:0;transform:translateY(-12px)}40%{opacity:1}100%{opacity:0;transform:translateY(80px)}}
+@keyframes faultBlink{50%{opacity:0;transform:scale(1.5)}}
+@keyframes meteorFlight{0%{transform:translate(80px,-70px) rotate(20deg);opacity:0}20%{opacity:1}100%{transform:translate(-280px,175px) rotate(-35deg);opacity:0}}
+@keyframes peaceFloat{50%{transform:translateY(-15px) scale(1.2);opacity:.55}}
+@keyframes warningShake{25%{transform:translateX(-2px)}75%{transform:translateX(2px)}}
+@keyframes fillFromZero{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes cellPop{from{opacity:.4;transform:translateY(7px) scale(.75)}to{opacity:1;transform:none}}
+@keyframes noteSlide{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes crewHighlight{50%{box-shadow:0 0 25px #94e4ff66}}
+@keyframes titleFloat{50%{transform:translateY(-4px)}}
+@keyframes badgeReveal{from{opacity:.5;transform:scale(.9)}to{opacity:1;transform:scale(1)}}
+@keyframes flowEnergy{to{background-position:220% 0}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+
 </style></head><body><main id="app"></main>
 <script>
 'use strict';
@@ -20,7 +111,7 @@ const keys=Object.keys(CONFIG.cost);
 let g={screen:'title',players:3,difficulty:'explorer',real:false,sensor:15,logOpen:false,sound:false};
 const $=id=>document.getElementById(id),clamp=(n,min=0,max=100)=>Math.max(min,Math.min(max,n)),rnd=(a,b)=>Math.floor(Math.random()*(b-a+1))+a;
 const spent=()=>keys.reduce((n,k)=>n+g.alloc[k],0)+(g.rest?1:0),remain=()=>g.pool-spent();
-const scene=()=>'<div class="scene" role="img" aria-label="Lunar outpost with Earth, domes, solar panels and tanks"><div class="earth"></div><div class="ground"></div><div class="buildings"><div class="solar" style="opacity:'+Math.max(.3,1-(g.dust||0)*.12)+'"></div><div class="dome">🏠</div><div class="dome green">🌿</div><div class="tank">O₂</div></div><div style="position:absolute;bottom:37px;left:47%;font-size:28px">👩‍🚀</div></div>';
+const scene=()=>{const active=g.screen==='response';const event=active?g.event.id:'';const fx={dust:'<span></span><span></span><span></span>',flare:'<span></span>',leak:'<span></span><span></span>',fault:'<span>⚡</span>',metal:'<span>☄️</span>',calm:'<span>✨</span><span>✨</span>'};const sceneClass=active&&['flare','dust','fault'].includes(event)?' warning':g.screen!=='title'&&g.food>=65?' healthy':'';return '<div class="scene'+sceneClass+'" role="img" aria-label="Animated lunar outpost with Earth, solar panels, habitats, greenhouse and astronauts"><div class="sunOrb"></div><div class="solarRay"></div><div class="earth"></div><div class="ground"></div><div class="buildings"><div class="solar" style="opacity:'+Math.max(.3,1-(g.dust||0)*.12)+'"></div><div class="dome">🏠</div><div class="dome green">🌿</div><div class="tank">O₂</div></div><div class="astronautSprite">👩‍🚀</div><div class="energyParticle"></div><div class="energyParticle" style="animation-delay:1.25s"></div>'+(active?'<div class="eventFx fx-'+event+'">'+fx[event]+'</div>':'')+'</div>';};
 const meter=(title,val,color)=>'<div><div class="row"><span>'+title+'</span><b>'+Math.round(val)+'%</b></div><div class="meter"><div style="width:'+clamp(val)+'%;background:'+color+'"></div></div></div>';
 const stats=()=>meter('💨 Oxygen',g.oxygen,'#7bdded')+meter('💧 Water',g.water,'#7aaffb')+meter('🌽 Food',g.food,'#83d7a2')+meter('❤️ Crew health',g.health,'#ed8b9c')+'<div class="row"><span>🔋 Stored battery</span><b>'+g.battery+'/'+CONFIG.battery+'</b></div><p class="small">🌫️ Panel dust: '+g.dust+'/5</p>';
 const header=()=>'<div class="row"><b>🌙 MOONBASE TEAM</b><div><button data-act="sound">'+(g.sound?'🔊':'🔇')+'</button> <button data-act="log">📖 Log</button></div></div><div class="row" style="margin:12px 0"><span class="pill">LUNAR DAY '+g.day+' / 7</span><span class="small">'+(g.difficulty==='explorer'?'🪐 Explorer':'🛠️ Engineer')+'</span></div>';
@@ -73,6 +164,7 @@ function ending(){let won=!g.lost,stars=won?(g.health>=72&&g.success>=5&&g.waste
 function log(){return '<div class="row"><h2>📖 Mission Log</h2><button data-act="closeLog">✕ Close</button></div><p class="small">Your discoveries and seven-day history.</p>'+(g.log.length?g.log.map(x=>'<div class="note"><span class="pill">Day '+x.day+'</span><p>'+x.note+'</p></div>').join(''):'<p>No discoveries yet.</p>')+'<h3>DAY HISTORY</h3>'+(g.history||[]).map(x=>'<div class="note">Day '+x.day+' • '+x.event+' • ☀️ '+x.solar+' cells • ❤️ '+Math.round(x.stats.health)+'%</div>').join('');}
 function render(){$('app').innerHTML=g.logOpen?log():g.screen==='title'?title():g.screen==='setup'?setup():g.screen==='plan'||g.screen==='response'?play():g.screen==='result'?result():ending();$('app').insertAdjacentHTML('beforeend','<div class="footer">MOONBASE TEAM • SpaceUp Challenge 2026 • Educational simulation</div>');}
 $('app').addEventListener('click',ev=>{let b=ev.target.closest('button');if(!b)return;
+ if(g.sound&&b.dataset.act!=='sound'){try{const A=window.AudioContext||window.webkitAudioContext;if(A){const c=window.__moonAudio||(window.__moonAudio=new A()),o=c.createOscillator(),v=c.createGain();o.type='sine';o.frequency.setValueAtTime(520,c.currentTime);o.frequency.exponentialRampToValueAtTime(850,c.currentTime+.12);v.gain.setValueAtTime(.035,c.currentTime);v.gain.exponentialRampToValueAtTime(.001,c.currentTime+.17);o.connect(v);v.connect(c.destination);o.start();o.stop(c.currentTime+.18);}}catch(e){}}
  if(b.dataset.players){g.players=+b.dataset.players;return render();}
  if(b.dataset.diff){g.difficulty=b.dataset.diff;return render();}
  if(b.dataset.key){let k=b.dataset.key,n=+b.dataset.delta;if(g.alloc[k]+n>=0&&g.alloc[k]+n<=CONFIG.cost[k]&&(n<0||remain()>=n))g.alloc[k]+=n;return render();}
